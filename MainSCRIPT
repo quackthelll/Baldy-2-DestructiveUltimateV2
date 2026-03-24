@@ -1,6 +1,8 @@
 
 
 if _G.MovesetSettings.DoubleSwitch then
+SkillName:Destroy()
+SkillName:Destroy()
   local SkillName = "Heavenly Pummel"
 local CooldownLengh = 2.5
 local Burning = false -- [ the KJ UFW burning effect ]
@@ -312,6 +314,8 @@ wait(0.125)
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Size = UDim2.new(0.06,0,0.77,0)
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Size = UDim2.new(0.06,0,0.77,0)
 else
+SkillName:Destroy()
+SkillName:Destroy()
   local SkillName = "Heavenly Pummel"
 local CooldownLengh = 2.5
 local Burning = false -- [ the KJ UFW burning effect ]
