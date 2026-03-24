@@ -823,7 +823,7 @@ local newColor =  Color3.new(0.65,0.85,1)
 for _, descendant in pairs(game.Workspace.Map.GrassTop:GetDescendants()) do
     if descendant:IsA("Part") and descendant.Name == tuff1 then
         -- Change the color to a solid color
-        descendant.Transparency = 0
+        descendant.Transparency = 0.00000001
         descendant.CanCollide = true
     end
 end
