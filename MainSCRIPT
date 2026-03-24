@@ -679,8 +679,6 @@ local function applySystem()
 end
 applySystem()
 
-end
-
 local moves = _G.MovesetSettings.MoveNames
 
 local player = game.Players.LocalPlayer
