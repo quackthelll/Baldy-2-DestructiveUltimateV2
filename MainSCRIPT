@@ -777,3 +777,53 @@ local player = game.Players.LocalPlayer
 				updateToolNames()
 			end
 		end)
+
+if _G.MovesetSettings.NoWalls then
+
+
+local tuff = "Part"
+local newColor =  Color3.new(0.65,0.85,1)
+
+for _, descendant in pairs(game.Workspace.Map.Walls:GetDescendants()) do
+    if descendant:IsA("Part") and descendant.Name == tuff then
+        -- Change the color to a solid color
+        descendant.Transparency = 1
+        descendant.CanCollide = false
+    end
+end
+
+local tuff1 = "Part"
+local newColor =  Color3.new(0.65,0.85,1)
+
+for _, descendant in pairs(game.Workspace.Map.GrassTop:GetDescendants()) do
+    if descendant:IsA("Part") and descendant.Name == tuff1 then
+        -- Change the color to a solid color
+        descendant.Transparency = 1
+        descendant.CanCollide = false
+    end
+end
+else
+
+
+local tuff = "Part"
+local newColor =  Color3.new(0.65,0.85,1)
+
+for _, descendant in pairs(game.Workspace.Map.Walls:GetDescendants()) do
+    if descendant:IsA("Part") and descendant.Name == tuff then
+        -- Change the color to a solid color
+        descendant.Transparency = 0
+        descendant.CanCollide = true
+    end
+end
+
+local tuff1 = "Part"
+local newColor =  Color3.new(0.65,0.85,1)
+
+for _, descendant in pairs(game.Workspace.Map.GrassTop:GetDescendants()) do
+    if descendant:IsA("Part") and descendant.Name == tuff1 then
+        -- Change the color to a solid color
+        descendant.Transparency = 0
+        descendant.CanCollide = true
+    end
+end
+end
