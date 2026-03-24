@@ -655,7 +655,6 @@ end
 
 local settings = _G.MovesetSettings.UltName
 
-if settings.Enabled then
 local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 
