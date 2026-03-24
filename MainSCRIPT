@@ -654,30 +654,9 @@ game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Size = UDim2.new(
 end
 
 local settings = _G.MovesetSettings.UltName
+game.Players.LocalPlayer.PlayerGui.Bar.MagicHealth.TextLabel.Text = settings
+game.Players.LocalPlayer.PlayerGui.Bar.MagicHealth.TextLabel.TextLabel.Text = settings
 
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
-local liveFolder = workspace:WaitForChild("Live")
-
-local function getMyModel()
-    for _, model in pairs(liveFolder:GetChildren()) do
-        if model:IsA("Model") and model.Name == player.Name then
-            return model
-        end
-    end
-end
-
-local function applySystem()
-    local myModel = getMyModel()
-    if not myModel then
-        warn("Model not found")
-        return
-    end
-
-    myModel:SetAttribute("UltimateName",  settings)  
-end
-applySystem()
 
 local moves = _G.MovesetSettings.MoveNames
 
