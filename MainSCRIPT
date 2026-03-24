@@ -680,11 +680,6 @@ local function applySystem()
 end
 applySystem()
 
-player.CharacterAdded:Connect(function()
-    task.wait(0)
-    applySystem()
-end)
-
 end
 
 local moves = _G.MovesetSettings.MoveNames
