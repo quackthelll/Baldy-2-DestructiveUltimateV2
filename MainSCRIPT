@@ -1,0 +1,779 @@
+
+
+if _G.MovesetSettings.DoubleSwitch then
+  local SkillName = "Heavenly Pummel"
+local CooldownLengh = 2.5
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Normal Punch"],
+        ["Goal"] = "Console Move"
+    }
+}))
+task.wait(0.535)
+local RunService = game:GetService("RunService")
+
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+local liveFolder = workspace:WaitForChild("Live")
+
+-- 🔍 Find closest target
+local function getClosestTarget()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, model in ipairs(liveFolder:GetChildren()) do
+        if model:IsA("Model") and model ~= character then
+            local targetHRP = model:FindFirstChild("HumanoidRootPart")
+            local targetHumanoid = model:FindFirstChildOfClass("Humanoid")
+
+            if targetHRP and targetHumanoid and targetHumanoid.Health > 0 then
+                local dist = (targetHRP.Position - hrp.Position).Magnitude
+                
+                if dist < shortest then
+                    closest = model
+                    shortest = dist
+                end
+            end
+        end
+    end
+
+    return closest
+end
+
+local target = getClosestTarget()
+if not target then
+    warn("No valid target found")
+    return
+end
+
+local targetHRP = target:FindFirstChild("HumanoidRootPart")
+
+-- save original state
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- tilt (optional)
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+
+-- 🚀 TELEPORT ONCE
+local lockPosition = targetHRP.Position + Vector3.new(0, 2, 1.25)
+hrp.CFrame = CFrame.new(lockPosition) * faceDown
+
+-- 🔒 LOCK POSITION
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    hrp.CFrame = CFrame.new(lockPosition) * faceDown
+    hrp.AssemblyAngularVelocity = Vector3.zero
+    hrp.AssemblyLinearVelocity = Vector3.zero
+end)
+
+task.wait(0.35)
+
+-- restore
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+end
+
+-- [[ THE CODE, MODIFY IF YOU WANT. ]]
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "Z"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "Z" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(106, 105, 106)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(31,31,31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["Z"] = Enum.KeyCode.Z,
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) 
+    if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end)
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
+    con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end)
+
+local SkillName = "Celestial Ascent"
+local CooldownLengh = 2.5
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Normal Punch"],
+        ["Goal"] = "Console Move"
+    }
+}))
+task.wait(0.5)
+local RunService = game:GetService("RunService")
+
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+local liveFolder = workspace:WaitForChild("Live")
+
+-- 🔍 Find closest target
+local function getClosestTarget()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, model in ipairs(liveFolder:GetChildren()) do
+        if model:IsA("Model") and model ~= character then
+            local targetHRP = model:FindFirstChild("HumanoidRootPart")
+            local targetHumanoid = model:FindFirstChildOfClass("Humanoid")
+
+            if targetHRP and targetHumanoid and targetHumanoid.Health > 0 then
+                local dist = (targetHRP.Position - hrp.Position).Magnitude
+                
+                if dist < shortest then
+                    closest = model
+                    shortest = dist
+                end
+            end
+        end
+    end
+
+    return closest
+end
+
+local target = getClosestTarget()
+if not target then
+    warn("No valid target found")
+    return
+end
+
+local targetHRP = target:FindFirstChild("HumanoidRootPart")
+
+-- save original state
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- tilt (optional)
+local faceDown = CFrame.Angles(math.rad(90), 0, 0)
+
+-- 🚀 TELEPORT ONCE
+local lockPosition = targetHRP.Position + Vector3.new(0, -5, 0)
+hrp.CFrame = CFrame.new(lockPosition) * faceDown
+
+-- 🔒 LOCK POSITION
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    hrp.CFrame = CFrame.new(lockPosition) * faceDown
+    hrp.AssemblyAngularVelocity = Vector3.zero
+    hrp.AssemblyLinearVelocity = Vector3.zero
+end)
+
+task.wait(0.35)
+
+-- restore
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+end
+
+-- [[ THE CODE, MODIFY IF YOU WANT. ]]
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "Z"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "Z" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(106, 105, 106)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(31,31,31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["Z"] = Enum.KeyCode.Z,
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) 
+    if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end)
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
+    con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end)
+
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].LayoutOrder = 0
+wait(0.125)
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Size = UDim2.new(0.06,0,0.77,0)
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Size = UDim2.new(0.06,0,0.77,0)
+else
+  local SkillName = "Heavenly Pummel"
+local CooldownLengh = 2.5
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Normal Punch"],
+        ["Goal"] = "Console Move"
+    }
+}))
+task.wait(0.535)
+local RunService = game:GetService("RunService")
+
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+local liveFolder = workspace:WaitForChild("Live")
+
+local function getClosestTarget()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, model in ipairs(liveFolder:GetChildren()) do
+        if model:IsA("Model") and model ~= character then
+            local targetHRP = model:FindFirstChild("HumanoidRootPart")
+            local targetHumanoid = model:FindFirstChildOfClass("Humanoid")
+
+            if targetHRP and targetHumanoid and targetHumanoid.Health > 0 then
+                local dist = (targetHRP.Position - hrp.Position).Magnitude
+                
+                if dist < shortest then
+                    closest = model
+                    shortest = dist
+                end
+            end
+        end
+    end
+
+    return closest
+end
+
+local target = getClosestTarget()
+if not target then
+    warn("No valid target found")
+    return
+end
+
+local targetHRP = target:FindFirstChild("HumanoidRootPart")
+
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+
+
+local lockPosition = targetHRP.Position + Vector3.new(0, 2, 1.25)
+hrp.CFrame = CFrame.new(lockPosition) * faceDown
+
+
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    hrp.CFrame = CFrame.new(lockPosition) * faceDown
+    hrp.AssemblyAngularVelocity = Vector3.zero
+    hrp.AssemblyLinearVelocity = Vector3.zero
+end)
+
+task.wait(0.35)
+
+
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+end
+
+
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "Z"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "Z" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(106, 105, 106)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(31,31,31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["Z"] = Enum.KeyCode.Z,
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) 
+    if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end)
+game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
+    con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end)
+      
+
+
+local SkillName = "Martial Swipe"
+local CooldownLengh = 2.5
+local Burning = false -- [ the KJ UFW burning effect ]
+
+local Activated = function()
+
+game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
+    [1] = {
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Shove"],
+        ["Goal"] = "Console Move"
+    }
+}))
+
+
+wait(0.45)
+local animation = Instance.new("Animation")
+animation.AnimationId = "rbxassetid://136370737633649"
+        
+        local chr = game.Players.LocalPlayer.Character
+        local humanoid = chr:WaitForChild("Humanoid")
+        
+        local animTrack = humanoid:LoadAnimation(animation)
+        animTrack:Play()
+animTrack:AdjustSpeed(2.5)
+animTrack.TimePosition = 2.25
+        task.delay(0.35, 
+
+function() 
+
+animTrack:Stop()
+
+
+end)
+task.wait(0.35)
+local RunService = game:GetService("RunService")
+
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local hrp = character:WaitForChild("HumanoidRootPart")
+
+local liveFolder = workspace:WaitForChild("Live")
+
+-- Function: find closest valid target (NOT yourself)
+local function getClosestTarget()
+    local closest = nil
+    local shortest = math.huge
+    
+    for _, model in ipairs(liveFolder:GetChildren()) do
+        if model:IsA("Model") and model ~= character then -- 🚫 ignore yourself
+            
+            local targetHRP = model:FindFirstChild("HumanoidRootPart")
+            local targetHumanoid = model:FindFirstChildOfClass("Humanoid")
+
+            if targetHRP and targetHumanoid and targetHumanoid.Health > 0 then
+                local dist = (targetHRP.Position - hrp.Position).Magnitude
+                
+                if dist < shortest then
+                    closest = model
+                    shortest = dist
+                end
+            end
+        end
+    end
+
+    return closest
+end
+
+-- Begin action -------------------------------------------------------
+
+local target = getClosestTarget()
+if not target then
+    warn("No valid target found")
+    return
+end
+
+local targetHRP = target:FindFirstChild("HumanoidRootPart")
+
+-- Store original states
+local originalCFrame = hrp.CFrame
+local originalAutoRotate = humanoid.AutoRotate
+
+-- Disable movement
+humanoid.AutoRotate = false
+humanoid.WalkSpeed = 0
+humanoid.JumpPower = 0
+
+-- Face down
+local faceDown = CFrame.Angles(math.rad(-180), 0, 0)
+
+-- Lock position for 1 second
+local connection
+connection = RunService.RenderStepped:Connect(function()
+    if targetHRP and targetHRP.Parent then
+        local lockPos = targetHRP.Position + Vector3.new(0, 1.5, -4.5)
+        hrp.CFrame = CFrame.new(lockPos) * faceDown
+        hrp.AssemblyAngularVelocity = Vector3.zero
+    end
+end)
+
+-- Fire tool
+character:FindFirstChild("Communicate"):FireServer(unpack({
+    [1] = {
+        ["Tool"] = player.Backpack:FindFirstChild("Normal Punch"),
+        ["Goal"] = "Console Move"
+    }
+}))
+
+task.wait(1.2)
+
+-- Restore
+connection:Disconnect()
+humanoid.AutoRotate = originalAutoRotate
+humanoid.WalkSpeed = 16
+humanoid.JumpPower = 50
+hrp.CFrame = originalCFrame
+
+end
+
+-- [[ THE CODE, MODIFY IF YOU WANT. ]]
+local SkillTemplate = Instance.new("Tool")
+SkillTemplate.Name = SkillName
+SkillTemplate.RequiresHandle = false
+SkillTemplate.ManualActivationOnly = false
+SkillTemplate.CanBeDropped = false
+SkillTemplate:SetAttribute("Regged", false)
+SkillTemplate:SetAttribute("Skill", true)
+SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
+local ks = "X"
+local OnCooldown = false
+local cooldownFunction = function()
+OnCooldown = true
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	ks = "X" .. slot.Parent.Parent.Name
+cd.Parent = slot.Parent
+local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
+cdTween:Play()
+cdTween.Completed:Connect(function()
+OnCooldown = false
+cd:Destroy()
+slot.Parent.BackgroundColor3 = Color3.fromRGB(106, 105, 106)
+game:GetService("TweenService"):Create(slot.Parent, TweenInfo.new(0.2), {BackgroundColor3 = Color3.fromRGB(31,31,31)}):Play()
+end)
+    end
+end
+end
+
+local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
+for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
+    if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
+	if Burning then
+	local fireLiterally = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Flipbook:Clone()
+fireLiterally.Parent = slot.Parent
+fireLiterally.LocalScript.Enabled = true
+end
+	slot.Parent.MouseButton1Click:Connect(function()
+	if not OnCooldown then
+cooldownFunction()
+Activated()
+end
+	end)
+	end
+end
+
+local Kmg = {
+    ["X"] = Enum.KeyCode.X
+}
+local kb = Kmg[ks]
+
+local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) if input.KeyCode == kb then
+if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
+cooldownFunction()
+Activated()
+end
+ end end) game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function() con:Disconnect() end)
+
+game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+died = true
+end)
+
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].LayoutOrder = 0
+wait(0.125)
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Size = UDim2.new(0.06,0,0.77,0)
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Size = UDim2.new(0.06,0,0.77,0)
+end
+
+local settings = _G.MovesetSettings.UltName
+
+if settings.Enabled then
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local liveFolder = workspace:WaitForChild("Live")
+
+local function getMyModel()
+    for _, model in pairs(liveFolder:GetChildren()) do
+        if model:IsA("Model") and model.Name == player.Name then
+            return model
+        end
+    end
+end
+
+local function applySystem()
+    local myModel = getMyModel()
+    if not myModel then
+        warn("Model not found")
+        return
+    end
+
+    myModel:SetAttribute("UltimateName",  settings.Name)  
+end
+applySystem()
+
+player.CharacterAdded:Connect(function()
+    task.wait(0)
+    applySystem()
+end)
+
+end
+
+local moves = _G.MovesetSettings.MoveNames
+
+local player = game.Players.LocalPlayer
+	local char = player.Character
+	local Humanoid = char.Humanoid
+	local hot = player.PlayerGui:WaitForChild("Hotbar")
+	local hotbar = hot:WaitForChild("Backpack"):WaitForChild("Hotbar")
+
+	local function cloneToolName(slot, text)
+		local toolName = slot.ToolName
+		if not slot:FindFirstChild("CustomName") then
+			toolName.Visible = false
+			local clone = toolName:Clone()
+			clone.Name = "CustomName"
+			clone.Parent = slot
+			clone.Text = text
+			clone.Visible = true
+		elseif slot:FindFirstChild("CustomName") then
+			if slot:FindFirstChild("CustomName").Text ~= text then
+				toolName.Visible = false
+				slot:FindFirstChild("CustomName").Text = text
+			end
+		end
+	end
+
+
+	local toolNameMap = {
+		["Normal Punch"] = moves.NormP,
+		["Consecutive Punches"] = moves.Cons,
+		["Shove"] = moves.Shove,
+		["Uppercut"] = moves.Upper
+		
+	}
+
+	local function typeText(label, text, delay)
+		delay = delay or 0
+		local originalText = text
+		label.Text = ""
+		for i = 1, #originalText do
+			label.Text = string.sub(originalText, 0.1, i)
+			task.wait(delay)
+		end
+	end
+
+
+
+	local typedTools = {}
+
+	local function updateToolNames()
+		for _, slot in ipairs(hotbar:GetChildren()) do
+			if slot:FindFirstChild("Base") and slot.Base:FindFirstChild("ToolName") then
+				local toolNameText = slot.Base.ToolName.Text
+				local newName = toolNameMap[toolNameText]
+				if newName then
+					cloneToolName(slot.Base, newName)
+					if slot.Base:FindFirstChild("CustomName") and not typedTools[newName] then
+						typeText(slot.Base.CustomName, newName, 0.0)
+						typedTools[newName] = true
+
+
+					end
+				end
+			end
+		end
+	end
+
+	task.spawn(
+		function()
+			local currentUltIndex = 1
+
+			while true do
+				typeText(UltLabel, ultTexts[currentUltIndex], 0.000)
+				currentUltIndex = (currentUltIndex % #ultTexts) + 1
+
+				pcall(
+					function()
+					end
+				)
+
+				updateToolNames()
+				task.wait(0.1)
+			end
+		end
+	)
+
+	task.spawn(
+		function()
+			while task.wait(0.01) do
+				updateToolNames()
+			end
+		end)
