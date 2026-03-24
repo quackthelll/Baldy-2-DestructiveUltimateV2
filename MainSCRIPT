@@ -678,6 +678,7 @@ local function applySystem()
     myModel:SetAttribute("UltimateName",  settings)  
 end
 applySystem()
+applySystem()
 
 local moves = _G.MovesetSettings.MoveNames
 
