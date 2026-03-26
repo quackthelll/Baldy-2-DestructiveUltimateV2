@@ -740,8 +740,20 @@ game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Numbe
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Text = "Z"
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Number.Text = "Z"
 wait(1)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Position = UDim2.new(0.375, 0, 0.5, 0)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Position = UDim2.new(0.675, 0, 0.5, 0)
+local player = game.Players.LocalPlayer
+local hotbar = player:WaitForChild("PlayerGui"):WaitForChild("Hotbar")
+	:WaitForChild("Backpack"):WaitForChild("Hotbar")
+
+local slot5 = hotbar:FindFirstChild("5")
+local slot6 = hotbar:FindFirstChild("6")
+
+if slot5 and slot5:FindFirstChild("Base") then
+	slot5.Base.Position = UDim2.new(0.375, 0, 0.5, 0)
+end
+
+if slot6 and slot6:FindFirstChild("Base") then
+	slot6.Base.Position = UDim2.new(0.675, 0, 0.5, 0)
+end
 
 local settings = _G.MovesetSettings.UltName
 game.Players.LocalPlayer.PlayerGui.Bar.MagicHealth.TextLabel.Text = settings
