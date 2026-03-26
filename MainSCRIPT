@@ -336,7 +336,6 @@ end)
 
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].LayoutOrder = 0
 wait(0.125)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Text = "X"
 
 
 else
@@ -739,7 +738,7 @@ game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Text 
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Number.Text = "X"
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Text = "Z"
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Number.Text = "Z"
-wait(1)
+wait(0)
 local player = game.Players.LocalPlayer
 local hotbar = player:WaitForChild("PlayerGui"):WaitForChild("Hotbar")
 	:WaitForChild("Backpack"):WaitForChild("Hotbar")
