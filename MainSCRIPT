@@ -739,8 +739,9 @@ game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Text 
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Number.Text = "X"
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Text = "Z"
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Number.Text = "Z"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Position = UDim2.new(0,0.375,0,0.5)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Position = UDim2.new(0,0.875,0,0.5)
+
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Position = UDim2.new(0, 0.375, 0, 0.5)
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Position = UDim2.new(0, 0.875, 0, 0.5)
 
 local settings = _G.MovesetSettings.UltName
 game.Players.LocalPlayer.PlayerGui.Bar.MagicHealth.TextLabel.Text = settings
