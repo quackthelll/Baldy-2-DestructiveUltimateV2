@@ -337,9 +337,9 @@ end)
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].LayoutOrder = 0
 wait(0.125)
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Text = "X"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Nukber.Text = "X"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Number.Text = "X"
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Text = "Z"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Nukber.Text = "Z"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Number.Text = "Z"
 
 else
 
@@ -735,9 +735,9 @@ end)
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].LayoutOrder = 0
 wait(0.125)
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Text = "X"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Nukber.Text = "X"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Number.Text = "X"
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Text = "Z"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Nukber.Text = "Z"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Number.Text = "Z"
 end
 
 local settings = _G.MovesetSettings.UltName
