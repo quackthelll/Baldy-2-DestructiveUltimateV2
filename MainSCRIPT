@@ -844,3 +844,449 @@ for _, descendant in pairs(game.Workspace.Map.GrassTop:GetDescendants()) do
     end
 end
 end
+
+
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local p = game.Players.LocalPlayer
+local Humanoid = p.Character:WaitForChild("Humanoid")
+local AnimAnim = Instance.new("Animation")
+
+--[[Animations]]
+
+--[[Move 1]]
+
+local animationId = 10468665991
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+ Anim:Stop()
+    animTrack:Stop()
+
+end
+
+AnimAnim.AnimationId = "rbxassetid://76530443909428"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 1.35
+
+Anim:AdjustSpeed(-1)
+task.delay(0.58, function()
+Anim:Stop()
+end) wait(0.565)
+AnimAnim.AnimationId = "rbxassetid://79761806706382"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 3
+
+Anim:AdjustSpeed(1)
+
+    end
+
+end
+
+--[[END OF MOVE 1 ANIM]]
+
+--[[Move 2]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10466974800
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+AnimAnim.AnimationId = "rbxassetid://125955606488863"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 0
+
+Anim:AdjustSpeed(1.5)
+
+task.delay(0.225, function()
+Anim:Stop()
+end)
+wait(0.221)
+AnimAnim.AnimationId = "rbxassetid://18897695481"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 0
+
+Anim:AdjustSpeed(2.5)
+
+task.delay(1.35, function()
+Anim:Stop()
+end)
+wait(1.35)
+AnimAnim.AnimationId = "rbxassetid://14900168720"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 2
+
+Anim:AdjustSpeed(1)
+    end
+
+end
+
+--[[END OF MOVE 2 ANIM]]
+
+--[[Move 3]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 10471336737
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+AnimAnim.AnimationId = "rbxassetid://135289891173395"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 0
+Anim:AdjustSpeed(0.25)
+wait(0.125)
+
+Anim:AdjustSpeed(0.875)
+
+
+delay(0.565, function()
+
+    Anim:Stop()
+
+end)
+wait(0.525)
+AnimAnim.AnimationId = "rbxassetid://109617620932970"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 0.65
+
+Anim:AdjustSpeed(1.25)
+
+    end
+
+end
+
+--[[END OF MOVE 3 ANIM]]
+
+--[[Move 4]]
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local animationId = 12510170988
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+AnimAnim.AnimationId = "rbxassetid://16515850153"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 0
+
+Anim:AdjustSpeed(1)
+
+
+    end
+
+end
+
+--[[END OF MOVE 4 ANIM]]
+
+--[[Wall combo]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 15955393872
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+AnimAnim.AnimationId = "rbxassetid://15943915877"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim:AdjustSpeed(1)
+
+Anim.TimePosition = 0
+
+
+    end
+
+end
+
+--[[END OF WALL COMBO ANIM]]
+
+--[[Ult Activation]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+local animationId = 12447707844
+
+local function onAnimationPlayed(animationTrack)
+    if animationTrack.Animation.AnimationId == "rbxassetid://" .. animationId then
+
+for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
+
+    animTrack:Stop()
+
+end
+
+AnimAnim.AnimationId = "rbxassetid://17106858586"
+
+local Anim = Humanoid:LoadAnimation(AnimAnim)
+
+Anim:Play()
+
+Anim.TimePosition = 1
+
+Anim:AdjustSpeed(0)
+
+    end
+
+end
+
+--[[END OF ULT ACTIVATION ANIM]]
+
+--[[Punch anims]]
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+
+local animationIdsToStop = {
+
+    [10469493270] = true, --punch1
+
+    [10469630950] = true, --punch2
+
+    [10469639222] = true, --punch3
+
+    [10469643643] = true, --punch4
+
+}
+
+
+local replacementAnimations = {
+
+    ["10469493270"] = "rbxassetid://17889458563", --punch1
+
+    ["10469630950"] = "rbxassetid://17889290569", --punch2
+
+    ["10469639222"] = "rbxassetid://16944265635", --punch3
+
+    ["10469643643"] = "rbxassetid://13294471966", --punch4
+
+}
+
+
+local queue = {}
+
+local isAnimating = false
+
+
+local function playReplacementAnimation(animationId)
+
+    if isAnimating then
+
+        table.insert(queue, animationId)
+
+        return
+
+    end
+
+   
+
+    isAnimating = true
+
+    local replacementAnimationId = replacementAnimations[tostring(animationId)]
+
+    if replacementAnimationId then
+
+        local AnimAnim = Instance.new("Animation")
+
+        AnimAnim.AnimationId = replacementAnimationId
+
+        local Anim = humanoid:LoadAnimation(AnimAnim)
+
+        Anim:Play()
+       Anim:AdjustSpeed(1.35)
+
+        Anim.Stopped:Connect(function()
+
+            isAnimating = false
+
+            if #queue > 0 then
+
+                local nextAnimationId = table.remove(queue, 1)
+
+                playReplacementAnimation(nextAnimationId)
+
+            end
+
+        end)
+
+    else
+
+        isAnimating = false
+
+    end
+
+end
+
+
+local function stopSpecificAnimations()
+
+    for _, track in ipairs(humanoid:GetPlayingAnimationTracks()) do
+
+        local animationId = tonumber(track.Animation.AnimationId:match("%d+"))
+
+        if animationIdsToStop[animationId] then
+
+            track:Stop()
+
+        end
+
+    end
+
+end
+
+
+local function onAnimationPlayed(animationTrack)
+
+    local animationId = tonumber(animationTrack.Animation.AnimationId:match("%d+"))
+
+    if animationIdsToStop[animationId] then
+
+        stopSpecificAnimations()
+
+        animationTrack:Stop()
+       
+
+        local replacementAnimationId = replacementAnimations[tostring(animationId)]
+
+        if replacementAnimationId then
+
+            playReplacementAnimation(animationId)
+
+        end
+
+    end
+
+end
+
+
+humanoid.AnimationPlayed:Connect(onAnimationPlayed)
+
+
+local player = game.Players.LocalPlayer
+
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+
+local function onBodyVelocityAdded(bodyVelocity)
+
+    if bodyVelocity:IsA("BodyVelocity") then
+
+        bodyVelocity.Velocity = Vector3.new(bodyVelocity.Velocity.X, 0, bodyVelocity.Velocity.Z)
+
+    end
+
+end
+
+
+character.DescendantAdded:Connect(onBodyVelocityAdded)
+
+
+for _, descendant in pairs(character:GetDescendants()) do
+
+    onBodyVelocityAdded(descendant)
+
+end
+
+
+player.CharacterAdded:Connect(function(newCharacter)
+
+    character = newCharacter
+
+    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
+
+    character.DescendantAdded:Connect(onBodyVelocityAdded)
+
+   
+
+    for _, descendant in pairs(character:GetDescendants()) do
+
+        onBodyVelocityAdded(descendant)
+
+    end
+
+end) 
