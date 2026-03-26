@@ -320,13 +320,43 @@ local Kmg = {
 }
 local kb = Kmg[ks]
 
-local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) 
-    if input.KeyCode == kb then
-if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
-cooldownFunction()
-Activated()
+local player = game:GetService("Players").LocalPlayer
+local uis = game:GetService("UserInputService")
+
+-- Force this skill to be key 5
+local KeyCode = kb
+
+-- Make sure these exist from your main script
+local OnCooldown = false
+local function cooldownFunction()
+	OnCooldown = true
+	
+	-- your cooldown logic here
+	
+	task.delay(CooldownLengh, function()
+		OnCooldown = false
+	end)
 end
- end end)
+
+-- Your main ability function
+local function Activated()
+	print("Double Flash-Step Activated")
+	
+	-- paste your full ability code here if needed
+end
+
+-- Input handling (FIXED)
+uis.InputBegan:Connect(function(input, gameProcessed)
+	-- Prevent activation while typing/chatting
+	if gameProcessed then return end
+	
+	if input.KeyCode == KeyCode then
+		if not OnCooldown then
+			cooldownFunction()
+			Activated()
+		end
+	end
+end)
 game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
     con:Disconnect() end)
 
