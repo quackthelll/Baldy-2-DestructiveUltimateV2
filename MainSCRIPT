@@ -691,7 +691,7 @@ local slot5 = hotbar:FindFirstChild("5")
 local slot6 = hotbar:FindFirstChild("6")
 
 if slot5 and slot5:FindFirstChild("Base") then
-	slot5.Base.Position = UDim2.new(0.375, 0, 0.5, 0)
+	slot5.Base.Position = UDim2.new(0.35, 0, 0.5, 0)
 end
 
 if slot6 and slot6:FindFirstChild("Base") then
