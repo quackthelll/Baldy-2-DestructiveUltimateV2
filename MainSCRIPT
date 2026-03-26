@@ -105,7 +105,7 @@ OnCooldown = true
 local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
 for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
     if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
-	ks = "Z" .. slot.Parent.Parent.Name
+	ks = "Z"
 cd.Parent = slot.Parent
 local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
 cdTween:Play()
@@ -141,18 +141,44 @@ local Kmg = {
 }
 local kb = Kmg[ks]
 
-local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) 
-    if input.KeyCode == kb then
-if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
-cooldownFunction()
-Activated()
-end
- end end)
-game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
-    con:Disconnect() end)
+--// INPUT SCRIPT (FIXED)
 
-game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
-died = true
+local player = game:GetService("Players").LocalPlayer
+local uis = game:GetService("UserInputService")
+
+-- Force this skill to be key 5
+local KeyCode = kb
+
+-- Make sure these exist from your main script
+local OnCooldown = false
+local function cooldownFunction()
+	OnCooldown = true
+	
+	-- your cooldown logic here
+	
+	task.delay(CooldownLengh, function()
+		OnCooldown = false
+	end)
+end
+
+-- Your main ability function
+local function Activated()
+	print("Double Flash-Step Activated")
+	
+	-- paste your full ability code here if needed
+end
+
+-- Input handling (FIXED)
+uis.InputBegan:Connect(function(input, gameProcessed)
+	-- Prevent activation while typing/chatting
+	if gameProcessed then return end
+	
+	if input.KeyCode == KeyCode then
+		if not OnCooldown then
+			cooldownFunction()
+			Activated()
+		end
+	end
 end)
 
 local SkillName = "Celestial Ascent"
@@ -251,14 +277,14 @@ SkillTemplate.CanBeDropped = false
 SkillTemplate:SetAttribute("Regged", false)
 SkillTemplate:SetAttribute("Skill", true)
 SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
-local ks = "Z"
+local ks = "X"
 local OnCooldown = false
 local cooldownFunction = function()
 OnCooldown = true
 local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
 for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
     if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
-	ks = "Z" .. slot.Parent.Parent.Name
+	ks = "X"
 cd.Parent = slot.Parent
 local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
 cdTween:Play()
@@ -290,7 +316,7 @@ end
 end
 
 local Kmg = {
-    ["Z"] = Enum.KeyCode.Z,
+    ["X"] = Enum.KeyCode.X,
 }
 local kb = Kmg[ks]
 
@@ -310,10 +336,14 @@ end)
 
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].LayoutOrder = 0
 wait(0.125)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Size = UDim2.new(0.06,0,0.77,0)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Size = UDim2.new(0.06,0,0.77,0)
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Text = "X"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Nukber.Text = "X"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Text = "Z"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Nukber.Text = "Z"
+
 else
-  local SkillName = "Heavenly Pummel"
+
+  local SkillName = "Head Swipe"
 local CooldownLengh = 2.5
 local Burning = false -- [ the KJ UFW burning effect ]
 
@@ -372,10 +402,10 @@ humanoid.AutoRotate = false
 humanoid.WalkSpeed = 0
 humanoid.JumpPower = 0
 
-local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
+local faceDown = CFrame.Angles(math.rad(-180), 0, 0)
 
 
-local lockPosition = targetHRP.Position + Vector3.new(0, 2, 1.25)
+local lockPosition = targetHRP.Position + Vector3.new(0, 1.25, -5)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 
@@ -413,7 +443,7 @@ OnCooldown = true
 local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
 for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
     if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
-	ks = "Z" .. slot.Parent.Parent.Name
+	ks = "Z"
 cd.Parent = slot.Parent
 local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
 cdTween:Play()
@@ -449,18 +479,44 @@ local Kmg = {
 }
 local kb = Kmg[ks]
 
-local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) 
-    if input.KeyCode == kb then
-if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
-cooldownFunction()
-Activated()
-end
- end end)
-game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function()
-    con:Disconnect() end)
+--// INPUT SCRIPT (FIXED)
 
-game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
-died = true
+local player = game:GetService("Players").LocalPlayer
+local uis = game:GetService("UserInputService")
+
+-- Force this skill to be key 5
+local KeyCode = kb
+
+-- Make sure these exist from your main script
+local OnCooldown = false
+local function cooldownFunction()
+	OnCooldown = true
+	
+	-- your cooldown logic here
+	
+	task.delay(CooldownLengh, function()
+		OnCooldown = false
+	end)
+end
+
+-- Your main ability function
+local function Activated()
+	print("Double Flash-Step Activated")
+	
+	-- paste your full ability code here if needed
+end
+
+-- Input handling (FIXED)
+uis.InputBegan:Connect(function(input, gameProcessed)
+	-- Prevent activation while typing/chatting
+	if gameProcessed then return end
+	
+	if input.KeyCode == KeyCode then
+		if not OnCooldown then
+			cooldownFunction()
+			Activated()
+		end
+	end
 end)
       
 
@@ -600,7 +656,7 @@ OnCooldown = true
 local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
 for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
     if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
-	ks = "X" .. slot.Parent.Parent.Name
+	ks = "X"
 cd.Parent = slot.Parent
 local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
 cdTween:Play()
@@ -636,21 +692,52 @@ local Kmg = {
 }
 local kb = Kmg[ks]
 
-local uis = game:GetService("UserInputService") local con = uis.InputBegan:Connect(function(input) if input.KeyCode == kb then
-if not OnCooldown and game:GetService("Players").LocalPlayer.PlayerGui.Chat.Frame.ChatBarParentFrame.Frame.BoxFrame.Frame.TextLabel.Visible then
-cooldownFunction()
-Activated()
-end
- end end) game.Players.LocalPlayer.Character:WaitForChild("Humanoid").Died:Connect(function() con:Disconnect() end)
+--// INPUT SCRIPT (FIXED)
 
-game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
-died = true
+local player = game:GetService("Players").LocalPlayer
+local uis = game:GetService("UserInputService")
+
+-- Force this skill to be key 5
+local KeyCode = kb
+
+-- Make sure these exist from your main script
+local OnCooldown = false
+local function cooldownFunction()
+	OnCooldown = true
+	
+	-- your cooldown logic here
+	
+	task.delay(CooldownLengh, function()
+		OnCooldown = false
+	end)
+end
+
+-- Your main ability function
+local function Activated()
+	print("Double Flash-Step Activated")
+	
+	-- paste your full ability code here if needed
+end
+
+-- Input handling (FIXED)
+uis.InputBegan:Connect(function(input, gameProcessed)
+	-- Prevent activation while typing/chatting
+	if gameProcessed then return end
+	
+	if input.KeyCode == KeyCode then
+		if not OnCooldown then
+			cooldownFunction()
+			Activated()
+		end
+	end
 end)
 
 game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].LayoutOrder = 0
 wait(0.125)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Size = UDim2.new(0.06,0,0.77,0)
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Size = UDim2.new(0.06,0,0.77,0)
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Text = "X"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Number.Nukber.Text = "X"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Text = "Z"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Number.Nukber.Text = "Z"
 end
 
 local settings = _G.MovesetSettings.UltName
