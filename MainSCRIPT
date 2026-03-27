@@ -948,7 +948,7 @@ Anim:Play()
 
 Anim.TimePosition = 2
 
-Anim:AdjustSpeed(1)
+Anim:AdjustSpeed(2)
     end
 
 end
@@ -1000,7 +1000,7 @@ Anim:Play()
 
 Anim.TimePosition = 0.65
 
-Anim:AdjustSpeed(1.25)
+Anim:AdjustSpeed(1.75)
 
     end
 
