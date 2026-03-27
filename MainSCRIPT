@@ -1,7 +1,7 @@
 
 if _G.MovesetSettings.DoubleSwitch then
 
-  local SkillName = "Heavenly Pummel"
+  local SkillName = "Divine Pummel"
 local CooldownLengh = 2.5
 local Burning = false -- [ the KJ UFW burning effect ]
 
@@ -335,7 +335,7 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))
-task.wait(0.535)
+task.wait(0.35)
 local RunService = game:GetService("RunService")
 
 local player = game:GetService("Players").LocalPlayer
@@ -386,7 +386,7 @@ humanoid.JumpPower = 0
 local faceDown = CFrame.Angles(math.rad(-180), 0, 0)
 
 
-local lockPosition = targetHRP.Position + Vector3.new(0, 1.25, -5)
+local lockPosition = targetHRP.Position + Vector3.new(0, 0, -5)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 
@@ -397,7 +397,7 @@ connection = RunService.RenderStepped:Connect(function()
     hrp.AssemblyLinearVelocity = Vector3.zero
 end)
 
-task.wait(0.35)
+task.wait(0.75)
 
 
 connection:Disconnect()
