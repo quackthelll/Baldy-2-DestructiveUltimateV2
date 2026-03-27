@@ -884,7 +884,7 @@ local Anim = Humanoid:LoadAnimation(AnimAnim)
 
 Anim:Play()
 
-Anim.TimePosition = 0.435
+Anim.TimePosition = 0.275
 
 Anim:AdjustSpeed(1)
 task.delay(0.58, function()
