@@ -172,7 +172,7 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))
-task.wait(0.5)
+task.wait(0.45)
 local RunService = game:GetService("RunService")
 
 local player = game:GetService("Players").LocalPlayer
@@ -237,7 +237,7 @@ connection = RunService.RenderStepped:Connect(function()
     hrp.AssemblyLinearVelocity = Vector3.zero
 end)
 
-task.wait(0.35)
+task.wait(0.45)
 
 -- restore
 connection:Disconnect()
