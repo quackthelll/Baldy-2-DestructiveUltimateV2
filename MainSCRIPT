@@ -297,13 +297,13 @@ end
 local Kmg = {
     ["C"] = Enum.KeyCode.C,
 }
-local kb = Kmg[ks]
+local knn = Kmg[ks]
 
 local player = game:GetService("Players").LocalPlayer
 local uis = game:GetService("UserInputService")
 
 -- Force this skill to be key 5
-local KeyCode = kb
+local KeyCode = knn
 
 -- Input handling (FIXED)
 uis.InputBegan:Connect(function(input, gameProcessed)
