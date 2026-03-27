@@ -138,14 +138,14 @@ end
 local Kmg = {
     ["X"] = Enum.KeyCode.X,
 }
-local kb = Kmg[ks]
+local km = Kmg[ks]
 
 --// INPUT SCRIPT (FIXED)
 local player = game:GetService("Players").LocalPlayer
 local uis = game:GetService("UserInputService")
 
 -- Force this skill to be key 5
-local KeyCode = kb
+local KeyCode = km
 
 -- Input handling (FIXED)
 uis.InputBegan:Connect(function(input, gameProcessed)
@@ -458,14 +458,14 @@ end
 local Kmg = {
     ["X"] = Enum.KeyCode.X,
 }
-local kb = Kmg[ks]
+local km = Kmg[ks]
 
 --// INPUT SCRIPT (FIXED)
 local player = game:GetService("Players").LocalPlayer
 local uis = game:GetService("UserInputService")
 
 -- Force this skill to be key 5
-local KeyCode = kb
+local KeyCode = km
 
 -- Input handling (FIXED)
 uis.InputBegan:Connect(function(input, gameProcessed)
