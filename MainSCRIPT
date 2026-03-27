@@ -866,7 +866,7 @@ for _, animTrack in pairs(Humanoid:GetPlayingAnimationTracks()) do
 
 end
 
-AnimAnim.AnimationId = "rbxassetid://76530443909428"
+AnimAnim.AnimationId = "rbxassetid://89951386537089"
 
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
