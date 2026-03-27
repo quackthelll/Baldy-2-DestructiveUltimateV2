@@ -237,7 +237,7 @@ connection = RunService.RenderStepped:Connect(function()
     hrp.AssemblyLinearVelocity = Vector3.zero
 end)
 
-task.wait(0.45)
+task.wait(0.35)
 
 -- restore
 connection:Disconnect()
