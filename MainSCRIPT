@@ -1,5 +1,4 @@
 
-
 if _G.MovesetSettings.DoubleSwitch then
 
   local SkillName = "Heavenly Pummel"
@@ -98,14 +97,14 @@ SkillTemplate.CanBeDropped = false
 SkillTemplate:SetAttribute("Regged", false)
 SkillTemplate:SetAttribute("Skill", true)
 SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
-local ks = _G.MovesetSettings.SubmovesKeybindChanger.S1
+local ks = "X"
 local OnCooldown = false
 local cooldownFunction = function()
 OnCooldown = true
 local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
 for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
     if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
-	ks = _G.MovesetSettings.SubmovesKeybindChanger.S1
+	ks = "X"
 cd.Parent = slot.Parent
 local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
 cdTween:Play()
@@ -137,7 +136,7 @@ end
 end
 
 local Kmg = {
-    ["_G.MovesetSettings.SubmovesKeybindChanger.S1"] = Enum.KeyCode._G.MovesetSettings.SubmovesKeybindChanger.S1,
+    ["X"] = Enum.KeyCode.X,
 }
 local kb = Kmg[ks]
 
@@ -257,14 +256,14 @@ SkillTemplate.CanBeDropped = false
 SkillTemplate:SetAttribute("Regged", false)
 SkillTemplate:SetAttribute("Skill", true)
 SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
-local ks = "_G.MovesetSettings.SubmovesKeybindChanger.S2"
+local ks = "C"
 local OnCooldown = false
 local cooldownFunction = function()
 OnCooldown = true
 local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
 for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
     if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
-	ks = "_G.MovesetSettings.SubmovesKeybindChanger.S2"
+	ks = "C"
 cd.Parent = slot.Parent
 local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
 cdTween:Play()
@@ -296,7 +295,7 @@ end
 end
 
 local Kmg = {
-    ["_G.MovesetSettings.SubmovesKeybindChanger.S2"] = Enum.KeyCode._G.MovesetSettings.SubmovesKeybindChanger.S2,
+    ["C"] = Enum.KeyCode.C,
 }
 local kb = Kmg[ks]
 
@@ -457,7 +456,7 @@ end
 end
 
 local Kmg = {
-    ["_G.MovesetSettings.SubmovesKeybindChanger.S1"] = Enum.KeyCode._G.MovesetSettings.SubmovesKeybindChanger.S1,
+    ["X"] = Enum.KeyCode.X,
 }
 local kb = Kmg[ks]
 
@@ -611,14 +610,14 @@ SkillTemplate.CanBeDropped = false
 SkillTemplate:SetAttribute("Regged", false)
 SkillTemplate:SetAttribute("Skill", true)
 SkillTemplate.Parent = game.Players.LocalPlayer.Backpack
-local ks = "_G.MovesetSettings.SubmovesKeybindChanger.S2"
+local ks = "C"
 local OnCooldown = false
 local cooldownFunction = function()
 OnCooldown = true
 local cd = game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.LocalScript.Cooldown:Clone()
 for _, slot in pairs(game:GetService("Players").LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar:GetDescendants()) do
     if slot:IsA("TextLabel") and slot.Name == "ToolName" and slot.Text == SkillName then
-	ks = "G.MovesetSettings.SubmovesKeybindChanger.S2"
+	ks = "C"
 cd.Parent = slot.Parent
 local cdTween = game:GetService("TweenService"):Create(cd, TweenInfo.new(CooldownLengh), {Size = UDim2.new(1, 0, -0.12, 0)})
 cdTween:Play()
@@ -650,7 +649,7 @@ end
 end
 
 local Kmg = {
-    ["_G.MovesetSettings.SubmovesKeybindChanger.S2"] = Enum.KeyCode._G.MovesetSettings.SubmovesKeybindChanger.S2
+    ["C"] = Enum.KeyCode.C
 }
 local kb = Kmg[ks]
 
@@ -678,10 +677,10 @@ wait(0.125)
 
 end
 
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Text = "_G.MovesetSettings.SubmovesKeybindChanger.S2"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Number.Text = "_G.MovesetSettings.SubmovesKeybindChanger.S2"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Text = "_G.MovesetSettings.SubmovesKeybindChanger.S1"
-game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Number.Text = "_G.MovesetSettings.SubmovesKeybindChanger.S1"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Text = "C"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["6"].Base.Number.Number.Text = "C"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Text = "X"
+game.Players.LocalPlayer.PlayerGui.Hotbar.Backpack.Hotbar["5"].Base.Number.Number.Text = "X"
 wait(0.65)
 local player = game.Players.LocalPlayer
 local hotbar = player:WaitForChild("PlayerGui"):WaitForChild("Hotbar")
