@@ -878,16 +878,16 @@ Anim:AdjustSpeed(-1)
 task.delay(0.58, function()
 Anim:Stop()
 end) wait(0.565)
-AnimAnim.AnimationId = "rbxassetid://89951386537089"
+AnimAnim.AnimationId = "rbxassetid://79761806706382"
 
 local Anim = Humanoid:LoadAnimation(AnimAnim)
 
 Anim:Play()
 
-Anim.TimePosition = 0.275
+Anim.TimePosition = 3
 
 Anim:AdjustSpeed(1)
-task.delay(0.58, function()
+task.delay(108, function()
 Anim:Stop()
 end)
     end
