@@ -1254,15 +1254,15 @@ platform.Parent = workspace
 local newPosition = root.Position + Vector3.new(0, 100, 0)
 platform.Position = newPosition - Vector3.new(0, 3, 0) -- slightly below player
 root.CFrame = CFrame.new(newPosition)
-task.delay(5.5, function()
+task.delay(5, function()
 platform:Destroy()
 end)
 
 
-task.delay(5.5, function()
+task.delay(4.75, function()
 Anim:AdjustSpeed(1)
 end)
-task.wait(5.5)
+task.wait(5)
 local RunService = game:GetService("RunService")
 
 local player = game:GetService("Players").LocalPlayer
@@ -1316,7 +1316,7 @@ humanoid.JumpPower = 0
 local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- 🚀 TELEPORT ONCE
-local lockPosition = targetHRP.Position + Vector3.new(0, 50, 0)
+local lockPosition = targetHRP.Position + Vector3.new(0, 40, 0)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 -- 🔒 LOCK POSITION
