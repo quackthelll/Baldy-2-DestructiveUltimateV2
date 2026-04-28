@@ -1036,6 +1036,13 @@ Anim.TimePosition = 0
 
 Anim:AdjustSpeed(1)
 
+    local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.MaxForce = Vector3.new(100000, 10000000, 100000)  -- Max force to apply the movement
+    bodyVelocity.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
+
+  task.delay(1, function()
+    bodyVelocity:Destroy()
+end)
 
     end
 
@@ -1480,49 +1487,4 @@ end
 
 humanoid.AnimationPlayed:Connect(onAnimationPlayed)
 
-
-local player = game.Players.LocalPlayer
-
-local character = player.Character or player.CharacterAdded:Wait()
-
-local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-
-
-local function onBodyVelocityAdded(bodyVelocity)
-
-    if bodyVelocity:IsA("BodyVelocity") then
-
-        bodyVelocity.Velocity = Vector3.new(bodyVelocity.Velocity.X, 0, bodyVelocity.Velocity.Z)
-
-    end
-
-end
-
-
-character.DescendantAdded:Connect(onBodyVelocityAdded)
-
-
-for _, descendant in pairs(character:GetDescendants()) do
-
-    onBodyVelocityAdded(descendant)
-
-end
-
-
-player.CharacterAdded:Connect(function(newCharacter)
-
-    character = newCharacter
-
-    humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-
-    character.DescendantAdded:Connect(onBodyVelocityAdded)
-
-   
-
-    for _, descendant in pairs(character:GetDescendants()) do
-
-        onBodyVelocityAdded(descendant)
-
-    end
-
-end) 
+print("Buttttt WHEN IIIIII")
