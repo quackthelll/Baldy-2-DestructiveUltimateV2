@@ -1155,7 +1155,7 @@ wait(0.5)
 Anim:AdjustSpeed(5)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
-        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
         ["Goal"] = "Console Move"
     }
 }))
@@ -1169,7 +1169,7 @@ end
 --[[Move 1 ULT]]
 humanoid.AnimationPlayed:Connect(onAnimationPlayed)
 
-local animationId = 12983333733
+local animationId = 11365563255
 
 
 local player = game.Players.LocalPlayer
