@@ -1037,7 +1037,7 @@ Anim.TimePosition = 0
 Anim:AdjustSpeed(1)
 
     local bodyVelocity = Instance.new("BodyVelocity")
-    bodyVelocity.MaxForce = Vector3.new(100000, 10000000, 100000)  -- Max force to apply the movement
+    bodyVelocity.MaxForce = Vector3.new(0, 10000000000000, 0)  -- Max force to apply the movement
     bodyVelocity.Parent = game.Players.LocalPlayer.Character.HumanoidRootPart
 
   task.delay(1, function()
