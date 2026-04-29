@@ -1155,7 +1155,7 @@ wait(0.5)
 Anim:AdjustSpeed(5)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
-        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Table Flip"],
+        ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
         ["Goal"] = "Console Move"
     }
 }))
@@ -1169,7 +1169,7 @@ end
 --[[Move 1 ULT]]
 humanoid.AnimationPlayed:Connect(onAnimationPlayed)
 
-local animationId = 11365563255
+local animationId = 12983333733
 
 
 local player = game.Players.LocalPlayer
@@ -1258,7 +1258,7 @@ platform.CanCollide = true
 platform.Transparency = 1 -- invisible
 platform.Parent = workspace
 
-local newPosition = root.Position + Vector3.new(0, 100, 0)
+local newPosition = root.Position + Vector3.new(0, 150, 0)
 platform.Position = newPosition - Vector3.new(0, 3, 0) -- slightly below player
 root.CFrame = CFrame.new(newPosition)
 task.delay(5, function()
@@ -1323,7 +1323,7 @@ humanoid.JumpPower = 0
 local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- 🚀 TELEPORT ONCE
-local lockPosition = targetHRP.Position + Vector3.new(0, 70, 0)
+local lockPosition = targetHRP.Position + Vector3.new(0, 60, 0)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 -- 🔒 LOCK POSITION
