@@ -12,7 +12,7 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))
-task.wait(0.535)
+task.wait(0.5)
 local RunService = game:GetService("RunService")
 
 local player = game:GetService("Players").LocalPlayer
@@ -66,7 +66,7 @@ humanoid.JumpPower = 0
 local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- 🚀 TELEPORT ONCE
-local lockPosition = targetHRP.Position + Vector3.new(0, 2, 1.25)
+local lockPosition = targetHRP.Position + Vector3.new(0, 2, 0)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 -- 🔒 LOCK POSITION
