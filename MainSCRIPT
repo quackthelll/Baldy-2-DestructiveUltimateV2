@@ -12,7 +12,7 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))
-task.wait(0.535)
+task.wait(0.525)
 local RunService = game:GetService("RunService")
 
 local player = game:GetService("Players").LocalPlayer
