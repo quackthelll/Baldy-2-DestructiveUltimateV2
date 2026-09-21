@@ -66,7 +66,7 @@ humanoid.JumpPower = 0
 local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- 🚀 TELEPORT ONCE
-local lockPosition = targetHRP.Position + Vector3.new(0, 2, 0)
+local lockPosition = targetHRP.Position + Vector3.new(0, 3, 0)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 -- 🔒 LOCK POSITION
@@ -77,7 +77,7 @@ connection = RunService.RenderStepped:Connect(function()
     hrp.AssemblyLinearVelocity = Vector3.zero
 end)
 
-task.wait(0.35)
+task.wait(1.2)
 
 -- restore
 connection:Disconnect()
