@@ -1152,6 +1152,30 @@ Anim:AdjustSpeed(1.35)
  Anim:Stop()
 end)
 wait(.5)
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+
+local player = Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+local SPEED = 3
+local DURATION = 5
+
+local startTime = tick()
+
+local connection
+connection = RunService.Heartbeat:Connect(function()
+    if tick() - startTime >= DURATION then
+        connection:Disconnect()
+        return
+    end
+
+    local root = character:FindFirstChild("HumanoidRootPart")
+    if root then
+        root.CFrame = root.CFrame + (humanoid.MoveDirection * SPEED)
+    end
+end)
 Anim:AdjustSpeed(5)
 
 local player = game:GetService("Players").LocalPlayer
