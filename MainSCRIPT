@@ -1301,7 +1301,7 @@ local root = character:WaitForChild("HumanoidRootPart")
 
 -- Create platform
 local platform = Instance.new("Part")
-platform.Size = Vector3.new(10, 1, 10)
+platform.Size = Vector3.new(10000, 1, 10000)
 platform.Anchored = true
 platform.CanCollide = true
 platform.Transparency = 1 -- invisible
