@@ -1341,7 +1341,8 @@ humanoid.JumpPower = 0
 local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- 🚀 TELEPORT ONCE
-local lockPosition = targetHRP.Position + Vector3.new(0, 50, 0)
+local PunchHeight = G.MovesetSettings.UltimateHeight
+local lockPosition = targetHRP.Position + Vector3.new(0, PunchHeight.Changer, 0)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 -- 🔒 LOCK POSITION
