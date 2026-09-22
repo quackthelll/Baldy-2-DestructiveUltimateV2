@@ -1310,7 +1310,7 @@ platform.Parent = workspace
 local newPosition = root.Position + Vector3.new(0, 150, 0)
 platform.Position = newPosition - Vector3.new(0, 3, 0) -- slightly below player
 root.CFrame = CFrame.new(newPosition)
-task.delay(5, function()
+task.delay(10, function()
 platform:Destroy()
 end)
 
