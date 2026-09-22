@@ -1151,8 +1151,25 @@ Anim:AdjustSpeed(1.35)
  task.delay(1, function()
  Anim:Stop()
 end)
-wait(0.5)
+wait(.5)
 Anim:AdjustSpeed(5)
+wait(4.5)
+local player = game:GetService("Players").LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local root = character:WaitForChild("HumanoidRootPart")
+
+local platform = Instance.new("Part")
+platform.Size = Vector3.new(10000, 1, 10000)
+platform.Anchored = true
+platform.CanCollide = true
+platform.Transparency = 1 -- invisible
+platform.Parent = workspace
+
+local newPosition = root.Position + Vector3.new(0, 150, 0)
+platform.Position = newPosition - Vector3.new(0, 3, 0) -- slightly below player
+root.CFrame = CFrame.new(newPosition)
+task.delay(8, function()
+platform:Destroy()
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
         ["Tool"] = game:GetService("Players").LocalPlayer.Backpack["Serious Punch"],
@@ -1323,7 +1340,7 @@ humanoid.JumpPower = 0
 local faceDown = CFrame.Angles(math.rad(-90), 0, 0)
 
 -- 🚀 TELEPORT ONCE
-local lockPosition = targetHRP.Position + Vector3.new(0, 37.5, 0)
+local lockPosition = targetHRP.Position + Vector3.new(0, UltPos, 0)
 hrp.CFrame = CFrame.new(lockPosition) * faceDown
 
 -- 🔒 LOCK POSITION
