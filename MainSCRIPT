@@ -1170,6 +1170,7 @@ platform.Position = newPosition - Vector3.new(0, 3, 0) -- slightly below player
 root.CFrame = CFrame.new(newPosition)
 task.delay(8, function()
 platform:Destroy()
+end)
 wait(4.5)
 game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
     [1] = {
