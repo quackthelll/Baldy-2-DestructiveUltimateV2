@@ -1154,19 +1154,20 @@ end)
 wait(.5)
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
 
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 
 local SPEED = 3
-local DURATION = 5
-
-local startTime = tick()
+local active = true
 
 local connection
+
 connection = RunService.Heartbeat:Connect(function()
-    if tick() - startTime >= DURATION then
+    if not active then
         connection:Disconnect()
         return
     end
@@ -1175,6 +1176,11 @@ connection = RunService.Heartbeat:Connect(function()
     if root then
         root.CFrame = root.CFrame + (humanoid.MoveDirection * SPEED)
     end
+end)
+
+-- Runs alongside the TP-walk
+task.delay(5, function()
+    active = false
 end)
 Anim:AdjustSpeed(5)
 
