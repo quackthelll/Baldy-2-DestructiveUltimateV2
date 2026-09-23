@@ -171,79 +171,136 @@ game:GetService("Players").LocalPlayer.Character.Communicate:FireServer(unpack({
         ["Goal"] = "Console Move"
     }
 }))
-task.wait(0.25)
-local RunService = game:GetService("RunService")
 
-local player = game:GetService("Players").LocalPlayer
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+
+local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 local hrp = character:WaitForChild("HumanoidRootPart")
 
 local liveFolder = workspace:WaitForChild("Live")
 
--- 🔍 Find closest target
-local function getClosestTarget()
-    local closest = nil
-    local shortest = math.huge
-    
+--// SETTINGS
+
+-- Position relative to target
+local PosX = 0
+local PosY = -3.5
+local PosZ = 0
+
+-- Rotation in degrees
+local RotX = 90
+local RotY = 0
+local RotZ = 0
+
+-- Lock duration
+local Duration = 1.12
+
+--// FIND LAST HIT TARGET
+
+local function getLastHitTarget()
     for _, model in ipairs(liveFolder:GetChildren()) do
         if model:IsA("Model") and model ~= character then
+
+            local lastHit = model:GetAttribute("LastHit")
             local targetHRP = model:FindFirstChild("HumanoidRootPart")
             local targetHumanoid = model:FindFirstChildOfClass("Humanoid")
 
-            if targetHRP and targetHumanoid and targetHumanoid.Health > 0 then
-                local dist = (targetHRP.Position - hrp.Position).Magnitude
-                
-                if dist < shortest then
-                    closest = model
-                    shortest = dist
-                end
+            if targetHRP
+                and targetHumanoid
+                and targetHumanoid.Health > 0
+                and (lastHit == player.Name or lastHit == player) then
+
+                return model
             end
         end
     end
 
-    return closest
+    return nil
 end
 
-local target = getClosestTarget()
+local target = getLastHitTarget()
+
 if not target then
-    warn("No valid target found")
+    warn("No LastHit target found")
     return
 end
 
 local targetHRP = target:FindFirstChild("HumanoidRootPart")
 
--- save original state
-local originalCFrame = hrp.CFrame
-local originalAutoRotate = humanoid.AutoRotate
+if not targetHRP then
+    warn("Target has no HumanoidRootPart")
+    return
+end
+
+--// SAVE ORIGINAL SETTINGS
+
+local oldAutoRotate = humanoid.AutoRotate
+local oldWalkSpeed = humanoid.WalkSpeed
+local oldJumpPower = humanoid.JumpPower
 
 humanoid.AutoRotate = false
 humanoid.WalkSpeed = 0
 humanoid.JumpPower = 0
 
--- tilt (optional)
-local faceDown = CFrame.Angles(math.rad(90), 0, 0)
+--// LOCK
 
--- 🚀 TELEPORT ONCE
-local lockPosition = targetHRP.Position + Vector3.new(0, -2.5, 0)
-hrp.CFrame = CFrame.new(lockPosition) * faceDown
+local startTime = os.clock()
 
--- 🔒 LOCK POSITION
 local connection
 connection = RunService.RenderStepped:Connect(function()
-    hrp.CFrame = CFrame.new(lockPosition) * faceDown
-    hrp.AssemblyAngularVelocity = Vector3.zero
+
+    if not targetHRP or not targetHRP.Parent then
+        connection:Disconnect()
+        return
+    end
+
+    if os.clock() - startTime >= Duration then
+        connection:Disconnect()
+        return
+    end
+
+    -- Prevent fling
     hrp.AssemblyLinearVelocity = Vector3.zero
+    hrp.AssemblyAngularVelocity = Vector3.zero
+
+    -- Position relative to target
+    local position =
+        targetHRP.Position
+        + Vector3.new(PosX, PosY, PosZ)
+
+    -- Custom rotation
+    local rotation =
+        CFrame.Angles(
+            math.rad(RotX),
+            math.rad(RotY),
+            math.rad(RotZ)
+        )
+
+    -- Apply position + rotation
+    hrp.CFrame =
+        CFrame.new(position)
+        * rotation
 end)
 
-task.wait(0.75)
+task.wait(Duration)
 
--- restore
-connection:Disconnect()
-humanoid.AutoRotate = originalAutoRotate
-humanoid.WalkSpeed = 16
-humanoid.JumpPower = 50
-hrp.CFrame = originalCFrame
+if connection then
+    connection:Disconnect()
+end
+
+--// RESTORE
+
+hrp.AssemblyLinearVelocity = Vector3.zero
+hrp.AssemblyAngularVelocity = Vector3.zero
+
+humanoid.AutoRotate = oldAutoRotate
+humanoid.WalkSpeed = oldWalkSpeed
+humanoid.JumpPower = oldJumpPower
+
+hrp.AssemblyLinearVelocity = Vector3.zero
+hrp.AssemblyAngularVelocity = Vector3.zero
 
 end
 
